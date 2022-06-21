@@ -29,7 +29,8 @@ CREATE TABLE USUARIO(
     telefono VARCHAR(25) NOT NULL,
     pass VARCHAR(40) NOT NULL,
     tipo BOOL NOT NULL,
-    activo BOOL NOT NULL
+    activo BOOL NOT NULL,
+    foto LONGBLOB
 );
 
 CREATE TABLE CATEGORIA(
@@ -83,6 +84,7 @@ CREATE TABLE DENUNCIA(
     descripcion TINYTEXT NOT NULL,
     emisor INT NOT NULL,
     receptor INT NOT NULL,
+    activa BOOL NOT NULL,
     FOREIGN KEY (emisor) REFERENCES USUARIO(idUsuario),
     FOREIGN KEY (receptor) REFERENCES USUARIO(idUsuario)
 );
@@ -93,6 +95,22 @@ CREATE TABLE SUSCRIPCION(
     idCategoria INT NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario),
     FOREIGN KEY (idCategoria) REFERENCES CATEGORIA(idCategoria)
+);
+
+CREATE TABLE CHAT(
+	idChat INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user1 INT NOT NULL,
+    user2 INT NOT NULL,
+    FOREIGN KEY (user1) REFERENCES USUARIO(idUsuario),
+    FOREIGN KEY (user2) REFERENCES USUARIO(idUsuario)
+);
+
+CREATE TABLE MENSAJE(
+	idMensaje INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idChat INT NOT NULL,
+    tiempo TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    mensaje TINYTEXT NOT NULL,
+    FOREIGN KEY (idChat) REFERENCES CHAT(idChat)
 );
 
 /*  
@@ -310,14 +328,14 @@ insert into CALIFICACION (idCalificacion, calificacion, emisor, receptor) values
 		Los usuarios del 32 al 35 tienen denuncias, por tanto han sido baneados.
 */
 
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (1, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 17, 34);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (2, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 19, 35);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (3, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 27, 32);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (4, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', 30, 32);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (5, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 9, 34);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (6, 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 17, 34);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (7, 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', 11, 35);
-insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor) values (8, 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', 25, 35);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (1, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 17, 34, true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (2, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', 19, 35,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (3, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', 27, 32,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (4, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', 30, 32,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (5, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', 9, 34,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (6, 'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.', 17, 34,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (7, 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', 11, 35,true);
+insert into DENUNCIA (idDenuncia, descripcion, emisor, receptor, activa) values (8, 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', 25, 35,true);
 
 /*
 	Insercion en la tabla de suscripciones...
