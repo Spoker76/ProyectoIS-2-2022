@@ -25,9 +25,9 @@ CREATE TABLE USUARIO(
     segundoNombre VARCHAR(20),
     primerApellido VARCHAR(20) NOT NULL,
     segundoApellido VARCHAR(20),
-    correo VARCHAR(40) NOT NULL,
+    correo VARCHAR(40) UNIQUE NOT NULL,
     telefono VARCHAR(25) NOT NULL,
-    pass VARCHAR(40) NOT NULL,
+    pass VARCHAR(200) NOT NULL,
     tipo BOOL NOT NULL,
     activo BOOL NOT NULL,
     foto LONGBLOB
