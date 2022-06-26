@@ -64,8 +64,6 @@ CREATE TABLE DIRECCION(
     idProducto INT,
     departamento VARCHAR(20),
     municipio VARCHAR(30),
-    barrio VARCHAR(50),
-    referencia TINYTEXT,
     FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto),
     FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario)
 );
@@ -241,61 +239,61 @@ insert into FOTO (idFoto, image, idProducto) values (20, null, 3);
         Si es direccion de usuario o de producto se diferencia mediante cual campo es null de la llave foránea.
 */
 
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (1, 1,null, 'Islas de la bahía', 'Tela', 'Colonia 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (2, 2,null, 'Yoro', 'Comayagua', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (3, 3,null, 'Valle', 'Amapala', 'Colonia 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (4, 4,null, 'Atlántida', 'Tegucigalpa', 'Barrio 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (5, 5,null, 'OlanchoSanta barbara', 'San pedro sula', 'Barrio 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (6, 6,null, 'Intibucá', 'San pedro sula', 'Colonia 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (7, 7,null, 'OlanchoSanta barbara', 'Amapala', 'Barrio 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (8, 8,null, 'La paz', 'San pedro sula', 'Colonia 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (9, 9,null, 'Gracias a dios', 'Amapala', 'Barrio 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (10, 10,null, 'Intibucá', 'Amapala', 'Barrio 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (11, 11,null, 'Atlántida', 'Tegucigalpa', 'Colonia 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (12, 12,null, 'Choluteca', 'La ceiba', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (13, 13,null, 'Cortés', 'Comayagua', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (14, 14,null, 'Ocotepeque', 'Comayagua', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (15, 15,null, 'Lempira', 'La ceiba', 'Colonia 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (16, 16,null, 'Colón', 'Tela', 'Colonia 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (17, 17,null, 'Islas de la bahía', 'La ceiba', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (18, 18,null, 'Cortés', 'La ceiba', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (19, 19,null, 'Atlántida', 'Comayagua', 'Colonia 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (20, 20,null, 'Intibucá', 'Tegucigalpa', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (21, 21,null, 'Francisco Morazán', 'Comayagua', 'Colonia 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (22, 22,null, 'Cortés', 'Amapala', 'Colonia 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (23, 23,null, 'El paraiso', 'La ceiba', 'Colonia 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (24, 24,null, 'Valle', 'Tegucigalpa', 'Colonia 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (25, 25,null, 'Ocotepeque', 'Comayagua', 'Barrio 2', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (26, 26,null, 'Islas de la bahía', 'Comayagua', 'Barrio 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (27, 27,null, 'Ocotepeque', 'La ceiba', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (28, 28,null, 'Atlántida', 'La ceiba', 'Colonia 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (29, 29,null, 'OlanchoSanta barbara', 'La ceiba', 'Colonia 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (30, 30,null, 'Yoro', 'Amapala', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (31, 31,null, 'La paz', 'Tegucigalpa', 'Colonia 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (32, 32,null, 'Lempira', 'Tela', 'Colonia 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (33, 33,null, 'Copán', 'San pedro sula', 'Barrio 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (34, 34,null, 'Francisco Morazán', 'Comayagua', 'Barrio 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (35, 35,null, 'Gracias a dios', 'Amapala', 'Colonia 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (36, null,1, 'Gracias a dios', 'San pedro sula', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (37, null,2, 'Copán', 'Comayagua', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (38, null,3, 'Intibucá', 'Tela', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (39, null,4, 'Islas de la bahía', 'La ceiba', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (40, null,5, 'El paraiso', 'La ceiba', 'Colonia 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (41, null,6, 'Valle', 'Tela', 'Barrio 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (42, null,7, 'Atlántida', 'Comayagua', 'Barrio 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (43, null,8, 'La paz', 'Amapala', 'Barrio 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (44, null,9, 'Cortés', 'San pedro sula', 'Colonia 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (45, null,10, 'Ocotepeque', 'Amapala', 'Barrio 2', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (46, null,11, 'OlanchoSanta barbara', 'San pedro sula', 'Colonia 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (47, null,12, 'Yoro', 'Tegucigalpa', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (48, null,13, 'Copán', 'San pedro sula', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (49, null,14, 'Copán', 'Tela', 'Barrio 1', 'Frente al negocio');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (50, null,15, 'Colón', 'San pedro sula', 'Barrio 1', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (51, null,16, 'Intibucá', 'San pedro sula', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (52, null,17, 'Copán', 'La ceiba', 'Barrio 1', 'Cerca de la pulperia');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (53, null,18, 'Atlántida', 'La ceiba', 'Colonia 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (54, null,19, 'Lempira', 'La ceiba', 'Barrio 2', 'Cerca de la cancha');
-insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio, barrio, referencia) values (55, null,20, 'Copán', 'Amapala', 'Barrio 1', 'Cerca de la pulperia');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (1, 1,null, 'Islas de la bahía', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (2, 2,null, 'Yoro', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (3, 3,null, 'Valle', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (4, 4,null, 'Atlántida', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (5, 5,null, 'Olancho','Santa barbara');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (6, 6,null, 'Intibucá', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (7, 7,null, 'OlanchoSanta barbara', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (8, 8,null, 'La paz', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (9, 9,null, 'Gracias a dios', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (10, 10,null, 'Intibucá', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (11, 11,null, 'Atlántida', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (12, 12,null, 'Choluteca', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (13, 13,null, 'Cortés', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (14, 14,null, 'Ocotepeque', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (15, 15,null, 'Lempira', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (16, 16,null, 'Colón', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (17, 17,null, 'Islas de la bahía', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (18, 18,null, 'Cortés', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (19, 19,null, 'Atlántida', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (20, 20,null, 'Intibucá', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (21, 21,null, 'Francisco Morazán', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (22, 22,null, 'Cortés', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (23, 23,null, 'El paraiso', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (24, 24,null, 'Valle', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (25, 25,null, 'Ocotepeque', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (26, 26,null, 'Islas de la bahía', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (27, 27,null, 'Ocotepeque', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (28, 28,null, 'Atlántida', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (29, 29,null, 'Olancho','Santa barbara');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (30, 30,null, 'Yoro', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (31, 31,null, 'La paz', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (32, 32,null, 'Lempira', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (33, 33,null, 'Copán', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (34, 34,null, 'Francisco Morazán', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (35, 35,null, 'Gracias a dios', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (36, null,1, 'Gracias a dios', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (37, null,2, 'Copán', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (38, null,3, 'Intibucá', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (39, null,4, 'Islas de la bahía', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (40, null,5, 'El paraiso', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (41, null,6, 'Valle', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (42, null,7, 'Atlántida', 'Comayagua');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (43, null,8, 'La paz', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (44, null,9, 'Cortés', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (45, null,10, 'Ocotepeque', 'Amapala');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (46, null,11, 'Olancho','Santa barbara');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (47, null,12, 'Yoro', 'Tegucigalpa');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (48, null,13, 'Copán', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (49, null,14, 'Copán', 'Tela');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (50, null,15, 'Colón', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (51, null,16, 'Intibucá', 'San pedro sula');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (52, null,17, 'Copán', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (53, null,18, 'Atlántida', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (54, null,19, 'Lempira', 'La ceiba');
+insert into DIRECCION (idDireccion,  idUsuario, idProducto, departamento, municipio) values (55, null,20, 'Copán', 'Amapala');
 
 /*
 	Inserción en la tabla de calificaciones...
