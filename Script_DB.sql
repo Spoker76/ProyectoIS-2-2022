@@ -53,7 +53,7 @@ CREATE TABLE PRODUCTO(
 
 CREATE TABLE FOTO(
 	idFoto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    image LONGBLOB,
+    image VARCHAR(100),
     idProducto INT NOT NULL,
     FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto)
 );
@@ -109,6 +109,17 @@ CREATE TABLE MENSAJE(
     tiempo TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     mensaje TINYTEXT NOT NULL,
     FOREIGN KEY (idChat) REFERENCES CHAT(idChat)
+);
+
+CREATE TABLE VENTAS(
+	idVenta INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    idProducto INT NOT NULL,
+    idComprador INT NOT NULL,
+    idVendedor INT NOT NULL,
+    fechat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto),
+    FOREIGN KEY (idComprador) REFERENCES USUARIO(idUsuario),
+    FOREIGN KEY (idVendedor) REFERENCES USUARIO(idUsuario)
 );
 
 /*  
@@ -184,53 +195,27 @@ insert into CATEGORIA (idCategoria, nombre) values (10, 'Empleo');
 		Los usuarios desde el 6 hasta el 15 son vendedores.
 */
 
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (1, 'Olive - Spread Tapenade', '2021-10-08', 4328.11, 'Sed ante. Vivamus tortor. Duis mattis egestas metus.', true, 2, 7);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (2, 'Veal - Osso Bucco', '2022-02-15', 8828.88, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', true, 2, 15);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (3, 'Haggis', '2022-01-19', 6649.21, 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', false, 4, 7);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (4, 'Flower - Potmums', '2022-05-23', 488.06, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', true, 5, 12);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (5, 'Dc Hikiage Hira Huba', '2021-11-18', 4610.57, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', false, 4, 15);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (6, 'Pasta - Bauletti', '2021-09-28', 4977.65, 'Phasellus in felis. Donec semper sapien a libero. Nam dui.', true, 1, 7);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (7, 'Cheese - Woolwich Goat', '2022-03-24', 1041.77, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', false, 1, 8);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (8, 'Longos - Chicken Wings', '2022-02-20', 4947.2, 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', false, 1, 8);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (9, 'Wasabi Paste', '2021-07-29', 7588.73, 'In congue. Etiam justo. Etiam pretium iaculis justo.', true, 4, 6);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (10, 'Island Oasis - Lemonade', '2022-01-30', 1997.0, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', false, 4, 15);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (11, 'Blackberries', '2022-02-07', 576.32, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', true, 5, 9);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (12, 'Soup - Chicken', '2022-04-17', 885.24, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', false, 5, 13);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (13, 'Tart - Raisin', '2022-05-15', 9068.19, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', false, 1, 6);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (14, 'Celery', '2021-08-11', 3371.26, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', true, 5, 15);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (15, 'Flour - Chickpea', '2021-09-16', 5381.92, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', false, 9, 12);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (16, 'Caviar - Salmon', '2021-09-02', 4301.42, 'Fusce consequat. Nulla nisl. Nunc nisl.', true, 8, 6);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (17, 'Rhubarb', '2021-11-14', 1782.04, 'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', false, 4, 14);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (18, 'Beef - Tender Tips', '2021-11-26', 3912.75, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', true, 7, 8);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (19, 'Vaccum Bag 10x13', '2022-05-10', 5817.0, 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', false, 8, 9);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (20, 'Towel - Roll White', '2022-05-05', 8714.66, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', true, 7, 7);
-insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (21, 'Rice - Long Grain', '2021-11-19', 7687.61, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', false, 7, 6);
-
-/*
-	Inserción en la tabla de fotos...
-		Los campos de imagen se generaron NULL por defecto.
-*/
-
-insert into FOTO (idFoto, image, idProducto) values (1, null, 10);
-insert into FOTO (idFoto, image, idProducto) values (2, null, 12);
-insert into FOTO (idFoto, image, idProducto) values (3, null, 5);
-insert into FOTO (idFoto, image, idProducto) values (4, null, 17);
-insert into FOTO (idFoto, image, idProducto) values (5, null, 8);
-insert into FOTO (idFoto, image, idProducto) values (6, null, 10);
-insert into FOTO (idFoto, image, idProducto) values (7, null, 11);
-insert into FOTO (idFoto, image, idProducto) values (8, null, 18);
-insert into FOTO (idFoto, image, idProducto) values (9, null, 2);
-insert into FOTO (idFoto, image, idProducto) values (10, null, 5);
-insert into FOTO (idFoto, image, idProducto) values (11, null, 3);
-insert into FOTO (idFoto, image, idProducto) values (12, null, 5);
-insert into FOTO (idFoto, image, idProducto) values (13, null, 15);
-insert into FOTO (idFoto, image, idProducto) values (14, null, 5);
-insert into FOTO (idFoto, image, idProducto) values (15, null, 20);
-insert into FOTO (idFoto, image, idProducto) values (16, null, 17);
-insert into FOTO (idFoto, image, idProducto) values (17, null, 6);
-insert into FOTO (idFoto, image, idProducto) values (18, null, 3);
-insert into FOTO (idFoto, image, idProducto) values (19, null, 6);
-insert into FOTO (idFoto, image, idProducto) values (20, null, 3);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (1, 'Mazda 3 09', '2021-10-08', 4328.11, 'Sed ante. Vivamus tortor. Duis mattis egestas metus.', true, 2, 7);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (2, 'Corolla 03', '2022-02-15', 8828.88, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', true, 2, 15);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (3, 'Conjunto de camisas', '2022-01-19', 6649.21, 'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.', false, 4, 7);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (4, 'Mameluco', '2022-05-23', 488.06, 'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.', true, 5, 12);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (5, 'Jeans', '2021-11-18', 4610.57, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.', false, 4, 15);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (6, 'Armario', '2021-09-28', 4977.65, 'Phasellus in felis. Donec semper sapien a libero. Nam dui.', true, 1, 7);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (7, 'Cómoda', '2022-03-24', 1041.77, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', false, 1, 8);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (8, 'Escritorio', '2022-02-20', 4947.2, 'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.', false, 1, 8);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (9, 'Hoodie', '2021-07-29', 7588.73, 'In congue. Etiam justo. Etiam pretium iaculis justo.', true, 4, 6);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (10, 'Jogger pants', '2022-01-30', 1997.0, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.', false, 4, 15);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (11, 'Juego de pepes', '2022-02-07', 576.32, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.', true, 5, 9);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (12, 'Pañales', '2022-04-17', 885.24, 'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.', false, 5, 13);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (13, 'Juego de muebles', '2022-05-15', 9068.19, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', false, 1, 6);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (14, 'Leche NAN', '2021-08-11', 3371.26, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', true, 5, 15);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (15, 'Bananos al por mayor', '2021-09-16', 5381.92, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.', false, 9, 12);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (16, 'Entretenimiento multimedia', '2021-09-02', 4301.42, 'Fusce consequat. Nulla nisl. Nunc nisl.', true, 8, 6);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (17, 'Calcetines', '2021-11-14', 1782.04, 'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', false, 4, 14);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (18, 'PowerBank', '2021-11-26', 3912.75, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', true, 7, 8);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (19, 'Discomovil', '2022-05-10', 5817.0, 'Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.', false, 8, 9);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (20, 'Microfono', '2022-05-05', 8714.66, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', true, 7, 7);
+insert into PRODUCTO (idProducto, nombre, fecha, costo, descripcion, activo, idCategoria, idUsuario) values (21, 'Celular Samsung', '2021-11-19', 7687.61, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.', false, 7, 6);
 
 /*
 	Insercion en la tabla de direcciones...
@@ -361,3 +346,69 @@ insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (18, 35, 
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (19, 22, 5);
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (20, 34, 10);
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (21, 15, 4);
+
+/*
+	Inserción en la tabla de ventas.
+		Se relacionan usuarios (vendedor / comprador) y productos.
+*/
+
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(21,5,6);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(3,6,7);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(5,14,15);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(7,7,8);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(8,7,8);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(10,14,15);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(12,12,13);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(13,5,6);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(15,11,12);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(17,13,14);
+insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(19,8,9);
+
+/*
+	Inserción en la tabla de fotos.
+		Se utiliza la carpeta con FOTOS	una para cada producto. Se almacenan en directorios.
+*/
+
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (1,'../FOTOS/1.JPG',1);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (2,'../FOTOS/2.JPG',2);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (3,'../FOTOS/3.JPG',3);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (4,'../FOTOS/4.JPG',4);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (5,'../FOTOS/5.JPG',5);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (6,'../FOTOS/6.JPG',6);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (7,'../FOTOS/7.PNG',7);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (8,'../FOTOS/8.PNG',8);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (9,'../FOTOS/9.JPG',9);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (10,'../FOTOS/10.JPG',10);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (11,'../FOTOS/11.JPG',11);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (12,'../FOTOS/12.JPG',12);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (13,'../FOTOS/13.JPG',13);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (14,'../FOTOS/14.JPG',14);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (15,'../FOTOS/15.JPG',15);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (16,'../FOTOS/16.JPG',16);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (17,'../FOTOS/17.JPG',17);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (18,'../FOTOS/18.JPG',18);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (19,'../FOTOS/19.JPEG',19);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (20,'../FOTOS/20.JPG',20);
+INSERT INTO FOTO (idFoto,image,idProducto) VALUES (21,'../FOTOS/21.JPG',21);
+
+/*
+
+	Consultas para el back end
+    
+*/
+
+/*
+LANDING PAGE
+
+Categorias que tienen más ventas, de mayor a menor.
+SELECT CATEGORIA.nombre AS CATEGORIA,COUNT(PRODUCTO.idCategoria) AS VENTAS FROM VENTAS
+INNER JOIN PRODUCTO ON VENTAS.idProducto = PRODUCTO.idProducto
+INNER JOIN CATEGORIA ON PRODUCTO.idCategoria = CATEGORIA.idCategoria
+GROUP BY PRODUCTO.idCategoria ORDER BY VENTAS DESC;
+
+Productos a la venta más recientes.
+SELECT PRODUCTO.nombre AS NOMBRE,image AS FOTO,costo AS PRECIO,CATEGORIA.nombre AS CATEGORIA FROM PRODUCTO
+INNER JOIN CATEGORIA ON PRODUCTO.idCategoria = CATEGORIA.idCategoria
+INNER JOIN FOTO ON PRODUCTO.idProducto = FOTO.idProducto
+WHERE activo = True ORDER BY fecha DESC;
+*/
