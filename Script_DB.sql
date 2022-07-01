@@ -58,6 +58,13 @@ CREATE TABLE FOTO(
     FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto)
 );
 
+CREATE TABLE FOTOCAT(
+	idFotoCat INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    image VARCHAR(100),
+    idCategoria INT NOT NULL,
+    FOREIGN KEY (idCategoria) REFERENCES CATEGORIA(idCategoria)
+);
+
 CREATE TABLE DIRECCION(
 	idDireccion INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idUsuario INT,
@@ -179,12 +186,12 @@ insert into USUARIO (idUsuario, primerNombre, segundoNombre, primerApellido, seg
 */
 
 insert into CATEGORIA (idCategoria, nombre) values (1, 'Inmuebles');
-insert into CATEGORIA (idCategoria, nombre) values (2, 'Vehiculos');
+insert into CATEGORIA (idCategoria, nombre) values (2, 'Vehículos');
 insert into CATEGORIA (idCategoria, nombre) values (3, 'Hogar');
 insert into CATEGORIA (idCategoria, nombre) values (4, 'Moda');
 insert into CATEGORIA (idCategoria, nombre) values (5, 'Futuros padres');
 insert into CATEGORIA (idCategoria, nombre) values (6, 'Mascotas');
-insert into CATEGORIA (idCategoria, nombre) values (7, 'Electronica');
+insert into CATEGORIA (idCategoria, nombre) values (7, 'Electrónica');
 insert into CATEGORIA (idCategoria, nombre) values (8, 'Servicios');
 insert into CATEGORIA (idCategoria, nombre) values (9, 'Negocios');
 insert into CATEGORIA (idCategoria, nombre) values (10, 'Empleo');
@@ -392,6 +399,22 @@ INSERT INTO FOTO (idFoto,image,idProducto) VALUES (20,'../FOTOS/20.JPG',20);
 INSERT INTO FOTO (idFoto,image,idProducto) VALUES (21,'../FOTOS/21.JPG',21);
 
 /*
+	Inserción en la tabla de fotos de categoria.
+		Se utiliza la carpeta con FOTOS	una para cada categoria. Se almacenan en directorios.
+*/
+
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT1.PNG',1);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT2.PNG',2);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT3.PNG',3);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT4.PNG',4);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT5.PNG',5);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT6.PNG',6);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT7.PNG',7);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT8.PNG',8);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT9.PNG',9);
+INSERT INTO FOTOCAT (image,idCategoria) VALUES ('../FOTOS/CAT10.PNG',10);
+
+/*
 
 	Consultas para el back end
     
@@ -401,9 +424,11 @@ INSERT INTO FOTO (idFoto,image,idProducto) VALUES (21,'../FOTOS/21.JPG',21);
 LANDING PAGE
 
 Categorias que tienen más ventas, de mayor a menor.
-SELECT CATEGORIA.idCategoria AS ID,CATEGORIA.nombre AS CATEGORIA,COUNT(PRODUCTO.idCategoria) AS VENTAS FROM VENTAS
+SELECT CATEGORIA.idCategoria AS ID,CATEGORIA.nombre AS CATEGORIA,COUNT(PRODUCTO.idCategoria) AS VENTAS,
+FOTOCAT.image AS FOTO FROM VENTAS
 INNER JOIN PRODUCTO ON VENTAS.idProducto = PRODUCTO.idProducto
 INNER JOIN CATEGORIA ON PRODUCTO.idCategoria = CATEGORIA.idCategoria
+INNER JOIN FOTOCAT ON CATEGORIA.idCategoria = FOTOCAT.idCategoria
 GROUP BY PRODUCTO.idCategoria ORDER BY VENTAS DESC LIMIT 3;
 
 Productos a la venta más recientes.
