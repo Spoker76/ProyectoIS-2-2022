@@ -1,1 +1,4 @@
-# ProyectoIS-2-2022
+##Project Setup
+``
+npm install
+``
