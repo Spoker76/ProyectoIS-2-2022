@@ -28,9 +28,8 @@ CREATE TABLE USUARIO(
     correo VARCHAR(40) UNIQUE NOT NULL,
     telefono VARCHAR(25) NOT NULL,
     pass VARCHAR(200) NOT NULL,
-    tipo BOOL NOT NULL,
-    activo BOOL NOT NULL,
-    foto LONGBLOB
+    tipo BOOL NOT NULL DEFAULT FALSE,
+    activo BOOL NOT NULL DEFAULT TRUE
 );
 
 CREATE TABLE CATEGORIA(
@@ -69,8 +68,8 @@ CREATE TABLE DIRECCION(
 	idDireccion INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     idUsuario INT,
     idProducto INT,
-    departamento VARCHAR(20),
-    municipio VARCHAR(30),
+    departamento VARCHAR(30),
+    municipio VARCHAR(100),
     FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto),
     FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario)
 );
@@ -116,17 +115,6 @@ CREATE TABLE MENSAJE(
     tiempo TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     mensaje TINYTEXT NOT NULL,
     FOREIGN KEY (idChat) REFERENCES CHAT(idChat)
-);
-
-CREATE TABLE VENTAS(
-	idVenta INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    idProducto INT NOT NULL,
-    idComprador INT NOT NULL,
-    idVendedor INT NOT NULL,
-    fechat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto),
-    FOREIGN KEY (idComprador) REFERENCES USUARIO(idUsuario),
-    FOREIGN KEY (idVendedor) REFERENCES USUARIO(idUsuario)
 );
 
 /*  
@@ -353,23 +341,7 @@ insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (18, 35, 
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (19, 22, 5);
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (20, 34, 10);
 insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (21, 15, 4);
-
-/*
-	Inserción en la tabla de ventas.
-		Se relacionan usuarios (vendedor / comprador) y productos.
-*/
-
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(21,5,6);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(3,6,7);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(5,14,15);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(7,7,8);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(8,7,8);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(10,14,15);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(12,12,13);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(13,5,6);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(15,11,12);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(17,13,14);
-insert into VENTAS (idProducto,idComprador,idVendedor)VALUES(19,8,9);
+insert into SUSCRIPCION (idSuscripcion, idUsuario, idCategoria) values (22, 15, 5);
 
 /*
 	Inserción en la tabla de fotos.
@@ -436,4 +408,14 @@ SELECT PRODUCTO.idProducto AS ID,PRODUCTO.nombre AS NOMBRE,image AS FOTO,costo A
 INNER JOIN CATEGORIA ON PRODUCTO.idCategoria = CATEGORIA.idCategoria
 INNER JOIN FOTO ON PRODUCTO.idProducto = FOTO.idProducto
 WHERE activo = True ORDER BY fecha DESC LIMIT 8;
+*/
+
+/*
+PROFILE PAGE
+
+SELECT idCategoria AS SUSCRIPCIONES FROM SUSCRIPCION WHERE idUsuario = 15;
+
+SELECT GROUP_CONCAT(idCategoria SEPARATOR ',') AS SUSCRIPCIONES FROM SUSCRIPCION WHERE idUsuario = 15;
+
+SELECT USUARIO.idUsuario AS ID,primerNombre AS PNOMBRE,segundoNombre AS SNOMBRE, primerApellido AS PAPELLIDO,segundoApellido AS SAPELLIDO,correo AS CORREO, telefono AS TELEFONO,pass AS CONTRASEÑA,DIRECCION.departamento AS DEPARTAMENTO, DIRECCION.municipio AS MUNICIPIO,AVG(CALIFICACION.calificacion) AS PROMEDIOCAL, foto AS FOTO FROM USUARIO LEFT JOIN DIRECCION ON USUARIO.idUsuario = DIRECCION.idUsuario LEFT JOIN CALIFICACION ON USUARIO.idUsuario = CALIFICACION.receptor WHERE USUARIO.idUsuario = 36;
 */
